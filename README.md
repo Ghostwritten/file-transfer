@@ -45,16 +45,87 @@ await fileTransfer.send({
 });
 ```
 
+### Telegram Adapter Usage
+```javascript
+import { TelegramAdapter } from './src/adapters/telegram-adapter.js';
+
+// Create Telegram adapter
+const telegramAdapter = new TelegramAdapter({
+  maxFileSize: 50 * 1024 * 1024, // 50MB
+  chunkSize: 10 * 1024 * 1024    // 10MB chunks
+});
+
+// Send file to Telegram
+const result = await telegramAdapter.sendFile({
+  filePath: '/path/to/document.pdf',
+  chatId: '-1003655501651', // Group chat ID (starts with '-100')
+  caption: 'Project document sharing',
+  options: {
+    disableNotification: false,
+    forceDocument: true
+  }
+});
+
+console.log('Transfer result:', result);
+console.log('Transfer ID:', result.transferId);
+console.log('Message ID:', result.messageId);
+console.log('Context analysis:', result.analysis);
+
+// Get transfer status
+const status = telegramAdapter.getTransferStatus(result.transferId);
+console.log('Transfer status:', status);
+
+// Get all active transfers
+const activeTransfers = telegramAdapter.getActiveTransfers();
+console.log('Active transfers:', activeTransfers);
+```
+
 ### OpenClaw Integration
 ```javascript
 // In your OpenClaw skill
-const { sendFileWithContext } = require('openclaw-file-transfer-skill');
+import { TelegramAdapter } from 'openclaw-file-transfer-skill/src/adapters/telegram-adapter.js';
 
 module.exports = {
   name: "file-transfer",
-  description: "Smart file transfer skill",
-  tools: {
-    sendFile: sendFileWithContext
+  description: "Context-aware file transfer",
+  
+  async execute(context, args) {
+    // Create Telegram adapter
+    const telegramAdapter = new TelegramAdapter();
+    
+    // Get file path (from message attachment or args)
+    const filePath = context.message.attachments?.[0]?.path || args.file;
+    
+    if (!filePath) {
+      return {
+        success: false,
+        message: 'Please provide file path or attachment'
+      };
+    }
+    
+    try {
+      // Smart file transfer
+      const result = await telegramAdapter.sendFile({
+        filePath,
+        chatId: context.chat.id,
+        caption: context.message.text || 'File sharing',
+        options: {
+          disableNotification: context.chat.type === 'group' // Silent in groups
+        }
+      });
+      
+      return {
+        success: true,
+        message: `✅ File transferred successfully!\n📁 File type: ${result.analysis.fileCategory}\n🎯 Scenario: ${result.analysis.scenario}\n⏱️ Duration: ${result.duration}ms`,
+        details: result
+      };
+    } catch (error) {
+      return {
+        success: false,
+        message: `❌ File transfer failed: ${error.message}`,
+        error: error.message
+      };
+    }
   }
 };
 ```
