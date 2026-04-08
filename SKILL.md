@@ -11,14 +11,14 @@ Context-aware file transfer skill for OpenClaw ecosystem. Intelligently transfer
 
 ## Installation
 ```bash
-npm install file-transfer
+npm install @ghostwritten/file-transfer
 ```
 
 ## Usage
 
 ### Basic File Transfer
 ```javascript
-import { FileTransferSkill } from 'file-transfer';
+import { FileTransferSkill } from '@ghostwritten/file-transfer';
 
 const skill = new FileTransferSkill({
   channels: { telegram: { enabled: true } }
@@ -33,7 +33,7 @@ const result = await skill.sendFileWithContext({
 
 ### Direct Adapter Usage
 ```javascript
-import { TelegramAdapter } from 'file-transfer/src/adapters/telegram-adapter.js';
+import { TelegramAdapter } from '@ghostwritten/file-transfer/src/adapters/telegram-adapter.js';
 
 const adapter = new TelegramAdapter();
 const result = await adapter.sendFile({
