@@ -1,7 +1,7 @@
 /**
- * OpenClaw File Transfer Skill - Main Entry Point
+ * File Transfer - Main Entry Point
  *
- * @module openclaw-file-transfer-skill
+ * @module file-transfer
  * @version 0.2.0-beta
  * @license MIT
  */

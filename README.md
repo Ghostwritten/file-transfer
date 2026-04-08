@@ -17,8 +17,8 @@ A context-aware file transfer skill for the OpenClaw ecosystem. Intelligently tr
 
 ### From Source
 ```bash
-git clone https://github.com/Ghostwritten/openclaw-file-transfer-skill.git
-cd openclaw-file-transfer-skill
+git clone https://github.com/Ghostwritten/file-transfer.git
+cd file-transfer
 npm install
 ```
 
@@ -82,7 +82,7 @@ const validation = await manager.validateFile('/path/to/file.pdf');
 ## Architecture
 
 ```
-openclaw-file-transfer-skill/
+file-transfer/
 ├── src/
 │   ├── index.js                   # Main entry - FileTransferSkill class
 │   ├── core/

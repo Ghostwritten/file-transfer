@@ -48,7 +48,7 @@ export class FileManager {
         'application/x-tar',
         'application/gzip'
       ],
-      tempDir: config.tempDir || '/tmp/openclaw-file-transfer',
+      tempDir: config.tempDir || '/tmp/file-transfer',
       ...config
     };
 

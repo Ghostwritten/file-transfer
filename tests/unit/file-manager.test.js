@@ -41,7 +41,7 @@ describe('FileManager', () => {
       expect(manager.config.maxFileSize).toBe(100 * 1024 * 1024); // 100MB
       expect(manager.config.chunkSize).toBe(10 * 1024 * 1024); // 10MB
       expect(manager.config.allowedMimeTypes).toBeInstanceOf(Array);
-      expect(manager.config.tempDir).toBe('/tmp/openclaw-file-transfer');
+      expect(manager.config.tempDir).toBe('/tmp/file-transfer');
     });
 
     test('应该使用自定义配置创建实例', () => {

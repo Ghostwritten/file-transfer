@@ -1,7 +1,7 @@
 {
-  "name": "openclaw-file-transfer-skill",
+  "name": "file-transfer",
   "version": "0.2.0-beta.0",
-  "description": "Context-aware file transfer skill for OpenClaw ecosystem",
+  "description": "Context-aware file transfer library for AI agents. Supports Telegram with intelligent context detection.",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
@@ -22,12 +22,15 @@
     "release": "standard-version"
   },
   "keywords": [
-    "openclaw",
     "file-transfer",
+    "ai-agent",
+    "context-aware",
+    "telegram",
     "chatbot",
     "automation",
-    "skill",
-    "context-aware"
+    "openclaw",
+    "claude",
+    "openai"
   ],
   "author": "Ghostwritten <ghostwritten01>",
   "license": "MIT",
@@ -59,9 +62,6 @@
     "lint-staged": "^13.0.0",
     "jsdoc": "^4.0.0",
     "standard-version": "^9.5.0"
-  },
-  "peerDependencies": {
-    "openclaw": "^2026.3.0"
   },
   "files": [
     "src/",
