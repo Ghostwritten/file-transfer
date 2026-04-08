@@ -1,6 +1,6 @@
 {
   "name": "openclaw-file-transfer-skill",
-  "version": "0.2.0-beta",
+  "version": "0.2.0-beta.0",
   "description": "Context-aware file transfer skill for OpenClaw ecosystem",
   "main": "src/index.js",
   "type": "module",
